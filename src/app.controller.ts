@@ -1,5 +1,7 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Query } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import fs from 'node:fs'
+import type { ICriminal } from './types/Criminal.ts'
 
 @Controller()
 export class AppController {
@@ -12,4 +14,22 @@ export class AppController {
       title: 'My First NestJS App'
     }
   }
+
+    @Get('red-blue')
+@Render('red-blue')
+    getRedBlue() {
+        return {bgColor: Math.random() > 0.5 ? 'red' : 'blue'};
+
+}
+    @Get('wanted')
+    @Render('wanted')
+    getWanted() {
+        return JSON.parse(fs.readFileSync('wanted.json', {encoding: 'utf-8'}))
+}
+    @Get('search')
+    @Render('search')
+    searchCrime(@Query('search') crime: string) {
+        crime = crime.toLocaleLowerCase();
+        return {results: (JSON.parse(fs.readFileSync('wanted.json', {encoding: 'utf-8'})) as ICriminal).crimes.filter(it=>!crime || it.toLocaleLowerCase()===crime)};
+}
 }

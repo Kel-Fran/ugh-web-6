@@ -1,0 +1,25 @@
+
+<%
+/** @type {import('../src/types/Criminal.ts')} */
+const {name, profile, hobbies} = locals;
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        wanted
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Wanted <%=name%></h1>
+    <img src="<%=profile%>" alt="the picture of the criminal">
+    <ul>
+        <%for(const it of hobbies) {%>
+            <li><%=it%></li>
+        <%}%>
+    </ul>
+</body>
+</html>
