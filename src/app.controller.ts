@@ -32,4 +32,17 @@ export class AppController {
         crime = crime.toLocaleLowerCase();
         return {results: (JSON.parse(fs.readFileSync('wanted.json', {encoding: 'utf-8'})) as ICriminal).crimes.filter(it=>!crime || it.toLocaleLowerCase()===crime)};
 }
+    @Get('color-picker')
+    @Render('color-picker')
+    getColorPicker(@Query('color') color: string) {
+        return {textColor: color ?? '#FFFFFF'};
+
+
+}
+    @Get('quadratic')
+    @Render('quadratic')
+    getQuadratic(@Query('a')a: string,@Query('b')b: string,@Query('c')c: string) {
+        return {a: +a, b: +b, c: +c}
+
+}
 }

@@ -1,0 +1,23 @@
+<% const {a,b,c} = locals; %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        quadratic
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <form method="GET" action="quadratic">
+        <input type="number", name="a" id="i-a" />
+        <input type="number", name="b" id="i-b" />
+        <input type="number", name="c" id="i-c" />
+        <input type="submit" />
+    </form>
+    <% const v0 = Math.sqrt(b * b - 4 * a * c); const x1 = (-b+v0)/(2*a); const x2 = (-b-v0)/(2*a)%>
+    <% console.log({a,b,c,v0,x1,x2}) %>
+    <p>results: <%=x1%> and <%=x2%></p>
+</body>
+</html>
